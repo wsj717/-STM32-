@@ -1,5 +1,4 @@
 #include "log.h"
-#include "usart.h"
 
 /* 全局配置 */
 static uint32_t s_ulog_fmt =
@@ -40,10 +39,10 @@ static const char* GetShortFileName(const char* path)
     return path;
 }
 
-/* 注册输出函数 */
+/* 回调函数 */
 void Ulog_RegisterOutput(UlogOutputFunc func)
 {
-    ulog_output = func ? func : Uart_SendData;
+        ulog_output = func;
 }
 
 /* 设置日志格式 */
